@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="content-container">
+    <h3 id="title" class="be-mine-question">WILL YOU DO ME THE HONOUR OF BEING MY VALENTINE?</h3>
+    <div class="gif-container">
+      <img id="gif" src="/resources/valentines-bear.gif" alt="A bear with hearts falling around them" width="500" height="500"/>
+    </div>
+    <div class="button-container">
+      <button id="yes-button" class="yes-button" onclick="yesClick()">
+        YES
+      </button>
+      <button id="no-button" class="no-button" onclick="noClick()">
+        NO
+      </button>
+    </div>
+    <h3 style="display: none;" id="fireworks-msg">Thats us... Just so you know <3</h3>
+  </div>
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #ffffff;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  
+    .content-container {
+      text-align: center;
+      padding: 0 20px; /* Add padding to the left and right sides */
+    }
+  
+    .be-mine-question {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  
+    .gif-container {
+      margin-bottom: 20px;
+    }
+  
+    .button-container {
+      margin-bottom: 20px;
+    }
+  
+    .yes-button, .no-button {
+      padding: 10px 20px;
+      border-radius: 20px;
+      background-color: #ff5c5c;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+  
+    .yes-button:hover, .no-button:hover {
+      background-color: #ff8f8f;
+    }
+  
+    #fireworks-msg {
+      font-style: italic;
+      display: none;
+      font-size: 10px;
+    }
+
+    .no-button:disabled {
+      background-color: #ffdfdf;
+      text-decoration: line-through;
+    }
+  
+    @media only screen and (max-width: 600px) {
+      .be-mine-question {
+        font-size: 20px;
+      }
+  
+      .yes-button, .no-button {
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+    }
+  </style>  
+
+  <script>
+    let noCounter = 0;
+
+    const noClick = () => {
+      console.log("clicked no");
+      let yesButton = document.getElementById("yes-button");
+      let noButton = document.getElementById("no-button");
+
+      switch(noCounter) {
+        case 0:
+          console.log("First No");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "Are you sure?";
+          break;
+        case 1:
+          console.log("Second No");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "Maybe try again...?"
+          break;
+        case 2:
+          console.log("Third NO");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "Be sure to consider all options!";
+          break;
+        case 3:
+          console.log("Fourth NO");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "I was kinda joking theres only one option...";
+          break;
+        case 4:
+          console.log("Fifth NO");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "If you keep this up I'll have to play unfair";
+          break;
+        case 5:
+          console.log("Sixth NO");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "Final chance at 'non forced' romance :)";
+          break;
+        case 6:
+          console.log("Sixth NO");
+          sizeButtonIncrease(yesButton);
+          noButton.innerText = "I'll cheat in this, but never on you! <3";
+          noButton.disabled = true;
+        default:
+          console.log("PROBLEM");
+          break;
+      }
+
+      noCounter++;
+    }
+
+    const sizeButtonIncrease = (button) => {
+      button.style.width = (100 + button.style.width.split('px')[0]*1.1)+"px";
+      button.style.height = (40 + button.style.height.split('px')[0]*1.1)+"px";
+    }
+
+    const yesClick = () => {
+      console.log("clicked yes!");
+      document.getElementById("no-button").style.display = "none";
+      document.getElementById("yes-button").style.display = "none";
+      document.getElementById("gif").src = "/resources/fireworks-val.gif";
+      document.getElementById("title").innerText = "YOU REALLY SAID YES! \n(totally not forced or anything...) \nWOW! I'M SO LUCKY <3";
+      document.getElementById("fireworks-msg").style.display = "block";
+    }
+  </script>
+</body>
+</html>
